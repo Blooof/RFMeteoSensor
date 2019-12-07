@@ -34,7 +34,7 @@ void setup(void) {
   
   Serial.begin(115200);
   printf_begin();
-  Serial.println("RF24Network/examples/helloworld_tx/");
+  Serial.println("Starting RFMeteoSensor");
 
   if (!bme.begin()) {
     Serial.println("Could not find a valid BME280 sensor, check wiring!");
@@ -67,7 +67,7 @@ void loop() {
   if (now - last_sent >= interval) {
     last_sent = now;
 
-    payload_t payload = { 0xB10F, getSchemaVersion(1, 1)};
+    payload_t payload;
     payload.magic = 0xB10F;
     payload.schemaAndVersion = getSchemaVersion(1, 1);
 
